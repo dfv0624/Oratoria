@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concurso de Oratoria Noviembre 2026</title>
+  <link rel="icon" type="image/png" href="https://secure.gravatar.com/blavatar/cee1ba2dbf884f2e2ecec873c3abd5f350e311307a89d312a5b9066128a44023?s=100">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      /* Paleta clara inspirada en el logo púrpura (#6b009c) */
+      --bg: #f8f6fb;
+      --surface: #ffffff;
+      --surface-elevated: #f3ecf8;
+      --border: #e2d9ec;
+      --border-focus: #6b009c;
+      --text: #191224;
+      --text-muted: #5e5270;
+      --accent: #6b009c;
+      --accent-hover: #53007a;
+      --accent-subtle: #f3e8f8;
+      --highlight: #f4ebfc;
+      --highlight-border: #6b009c;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --font-jp: 'Zen Kaku Gothic New', -apple-system, sans-serif;
+      --font-ui: 'Inter', -apple-system, sans-serif;
+    }
+
+    /* Eliminación total de sombras para un diseño limpio y claro */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-ui);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      vertical-align: middle;
+      display: inline-block;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .header-titles {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .header-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .header-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.2px;
+    }
+
+    .logo-badge {
+      background: var(--accent-subtle);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .header-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    main {
+      flex: 1;
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .view-container {
+      display: none;
+    }
+
+    .view-container.active {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* HOME VIEW */
+    .home-hero {
+      margin-bottom: 28px;
+    }
+
+    .home-hero h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .home-hero p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .passage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 18px;
+    }
+
+    .passage-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+      position: relative;
+    }
+
+    .passage-card:hover {
+      border-color: var(--accent);
+      background: #faf7fe;
+      transform: translateY(-2px);
+    }
+
+    .passage-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: inline-block;
+      letter-spacing: 0.5px;
+    }
+
+    .passage-title {
+      font-family: var(--font-jp);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .passage-preview {
+      font-family: var(--font-jp);
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .passage-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* PRACTICE VIEW */
+    .practice-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      gap: 16px;
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-elevated);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .workspace-layout {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* CONTROLS SIDEBAR */
+    .control-deck {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .deck-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .deck-header-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-deck-toggle {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+
+    .btn-deck-toggle:hover {
+      background: #ebdcf3;
+      border-color: var(--accent);
+    }
+
+    .deck-chevron {
+      transition: transform 0.2s ease;
+      width: 14px;
+      height: 14px;
+    }
+
+    .deck-chevron.collapsed {
+      transform: rotate(-90deg);
+    }
+
+    .deck-primary-row {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .control-deck-collapsible {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .control-deck-collapsible.is-collapsed {
+      display: none !important;
+    }
+
+    .control-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .control-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-main-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .btn-action {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+
+    .btn-action:hover {
+      background: #ebdcf3;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-action.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-action.primary:hover {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: #ffffff;
+    }
+
+    .timer-readout {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .speed-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .speed-wrapper input[type="range"] {
+      flex: 1;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .speed-tag {
+      font-size: 13px;
+      font-weight: 700;
+      min-width: 38px;
+      text-align: right;
+      color: var(--accent);
+    }
+
+    .mode-pills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .pill-btn {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+    }
+
+    .pill-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .pill-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .toggle-button {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 9px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.15s;
+    }
+
+    .toggle-button:hover {
+      border-color: var(--accent);
+    }
+
+    .toggle-button.active {
+      background: var(--accent-subtle);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* SCRIPT FEED */
+    .script-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .sentence-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+      border-left: 4px solid transparent;
+      word-break: break-word;
+    }
+
+    .sentence-card:hover {
+      background: #faf7fe;
+      border-color: #cbbad9;
+    }
+
+    .sentence-card.active {
+      background: var(--highlight);
+      border-color: var(--highlight-border);
+      border-left-color: var(--highlight-border);
+    }
+
+    .sentence-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .sentence-jp {
+      font-family: var(--font-jp);
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--text);
+      display: block;
+    }
+
+    .sentence-ro {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 3px;
+      display: block;
+    }
+
+    .sentence-tools {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .btn-util {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-util:hover {
+      background: #ebdcf3;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-util.recording {
+      background: #fee2e2;
+      border-color: var(--danger);
+      color: var(--danger);
+      animation: pulse 1s infinite alternate;
+    }
+
+    .btn-util.has-audio {
+      background: #ecfdf5;
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    @keyframes pulse {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0.4;
+      }
+    }
+
+    .cloze-blank {
+      background: #f0e6f7;
+      border: 1px dashed var(--accent);
+      border-radius: 4px;
+      color: transparent !important;
+      padding: 0 8px;
+      user-select: none;
+      display: inline-block;
+    }
+
+    .hidden-text {
+      background: #ebe0f2;
+      color: transparent !important;
+      border-radius: 4px;
+      user-select: none;
+      display: inline-block;
+      padding: 0 8px;
+    }
+
+    /* DESKTOP SIDEBAR STICKY */
+    @media (min-width: 861px) {
+      .control-deck {
+        position: sticky;
+        top: 80px;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+      }
+    }
+
+    /* RESPONSIVE TABLETS & MOBILES */
+    @media (max-width: 860px) {
+      main {
+        padding: 20px 14px 50px;
+      }
+
+      .workspace-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      /* NUNCA SE QUEDAN PEGADAS: Posición estática para que fluyan naturalmente */
+      .control-deck {
+        position: static !important;
+        top: auto !important;
+        padding: 14px 16px;
+        gap: 12px;
+      }
+
+      .deck-primary-row {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 10px;
+        align-items: end;
+      }
+
+      .control-deck-collapsible {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+        padding-top: 10px;
+        border-top: 1px dashed var(--border);
+      }
+
+      .timer-readout {
+        padding: 9px 6px;
+        font-size: 21px;
+      }
+
+      .practice-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .practice-nav h2 {
+        font-size: 18px !important;
+      }
+
+      .sentence-card {
+        padding: 12px 14px;
+        gap: 12px;
+      }
+
+      .sentence-jp {
+        font-size: 19px;
+        line-height: 1.5;
+      }
+
+      .sentence-ro {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      header {
+        padding: 10px 14px;
+      }
+
+      .header-logo {
+        width: 36px;
+        height: 36px;
+      }
+
+      .header-title {
+        font-size: 14px;
+      }
+
+      .header-subtitle {
+        display: none;
+      }
+
+      .deck-primary-row {
+        grid-template-columns: 1fr;
+      }
+
+      .control-deck-collapsible {
+        grid-template-columns: 1fr;
+      }
+
+      .btn-main-row {
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo-group">
+        <img src="https://secure.gravatar.com/blavatar/cee1ba2dbf884f2e2ecec873c3abd5f350e311307a89d312a5b9066128a44023?s=100" alt="Logo Concurso de Oratoria" class="header-logo">
+        <div class="header-titles">
+          <div class="header-title-row">
+            <h1 class="header-title">Concurso de Oratoria Noviembre 2026</h1>
+            <span class="logo-badge">N1 &amp; N2</span>
+          </div>
+          <span class="header-subtitle">弁論大会・朗読練習 (Oratoria &amp; Declamación)</span>
+        </div>
+      </div>
+      <button class="btn-secondary" id="btnHeaderHome" style="display:none;" onclick="navigateHome()">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Volver a la selección</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- VISTA 1: DASHBOARD DE SELECCIÓN -->
+    <section id="viewHome" class="view-container active">
+      <div class="home-hero">
+        <h2>Pasajes Disponibles</h2>
+        <p>Selecciona uno de los 6 textos para configurar el entrenamiento de pronunciación, ritmo y memoria.</p>
+      </div>
+
+      <div class="passage-grid" id="passageGrid"></div>
+    </section>
+
+    <!-- VISTA 2: ESPACIO DE ENTRENAMIENTO -->
+    <section id="viewPractice" class="view-container">
+      <div class="practice-nav">
+        <button class="btn-secondary" onclick="navigateHome()">
+          <svg class="icon" viewBox="0 0 24 24">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Elegir otro pasaje</span>
+        </button>
+        <h2 id="currentPassageHeading" style="font-family: var(--font-jp); font-size: 20px;"></h2>
+      </div>
+
+      <div class="workspace-layout">
+        <!-- BARRA LATERAL DE CONTROL -->
+        <aside class="control-deck">
+          <div class="deck-header">
+            <span class="deck-header-title">
+              <svg class="icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              Controles de Práctica
+            </span>
+            <button class="btn-deck-toggle" id="btnToggleDeck" type="button" aria-expanded="false">
+              <span id="deckToggleText">Mostrar opciones</span>
+              <svg class="icon deck-chevron collapsed" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+          </div>
+
+          <!-- Fila principal (Iniciar/Detener + Tiempo) -->
+          <div class="deck-primary-row">
+            <div class="control-block">
+              <span class="control-label">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Lectura Continua
+              </span>
+              <div class="btn-main-row">
+                <button class="btn-action primary" id="btnPlayAll">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <span>Iniciar</span>
+                </button>
+                <button class="btn-action" id="btnStop">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                  </svg>
+                  <span>Detener</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-block">
+              <span class="control-label">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Tiempo
+              </span>
+              <div class="timer-readout" id="timerDisplay">00:00</div>
+            </div>
+          </div>
+
+          <!-- Opciones adicionales colapsables (ocultas por defecto) -->
+          <div class="control-deck-collapsible is-collapsed" id="deckCollapsible">
+            <div class="control-block">
+              <span class="control-label">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+                Velocidad: <span class="speed-tag" id="speedDisplay">0.6x</span>
+              </span>
+              <div class="speed-wrapper">
+                <input type="range" id="speedSlider" min="0.3" max="1.0" step="0.05" value="0.6">
+              </div>
+            </div>
+
+            <div class="control-block">
+              <span class="control-label">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M2 12h20M2 12l5-5m-5 5 5 5"></path>
+                </svg>
+                Memorización Gradual
+              </span>
+              <div class="mode-pills">
+                <button class="pill-btn active" data-mode="1">1. Completo</button>
+                <button class="pill-btn" data-mode="2">2. Sin Rōmaji</button>
+                <button class="pill-btn" data-mode="3">3. Cloze</button>
+                <button class="pill-btn" data-mode="4">4. Ciego</button>
+              </div>
+            </div>
+
+            <div class="control-block">
+              <span class="control-label">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M4 7V4h16v3M9 20h6M12 4v16"></path>
+                </svg>
+                Estructura
+              </span>
+              <button class="toggle-button" id="btnToggleWakachi">
+                <span>Espaciado Natural (Wakachi)</span>
+                <svg class="icon" viewBox="0 0 24 24">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- SECUENCIA DEL TEXTO -->
+        <section class="script-feed" id="scriptFeed"></section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // BASE DE DATOS DE LOS 6 PASAJES (Transcripción fiel del documento del concurso)
+    const passages = [
+      {
+        id: 1,
+        title: "いきているって",
+        subtitle: "Poema de sensaciones cotidianas y vida",
+        lines: [
+          { jp: "いきているって", sp: "いきている って", ro: "ikite iru tte", cloze: "______ って" },
+          { jp: "あさがきてめがさめた。", sp: "あさ が きて め が さめた。", ro: "asa ga kite me ga sameta.", cloze: "______ が きて め が さめた。" },
+          { jp: "わたしのおなかが、", sp: "わたし の おなか が、", ro: "watashi no onaka ga,", cloze: "わたし の ______ が、" },
+          { jp: "ぐぐぐう きゅるる。", sp: "ぐぐぐう きゅるる。", ro: "gugugū kyururu.", cloze: "______ きゅるる。" },
+          { jp: "ああ、 おなかがすいたな。", sp: "ああ、 おなか が すいたな。", ro: "ā, onaka ga suita na.", cloze: "ああ、 ______ が すいたな。" },
+          { jp: "いもうとをぎゅっと", sp: "いもうと を ぎゅっと", ro: "imōto o gyutto", cloze: "______ を ぎゅっと" },
+          { jp: "だきしめた。", sp: "だきしめた。", ro: "dakishimeta.", cloze: "______。" },
+          { jp: "ぬくぬくぽかぽか。", sp: "ぬくぬく ぽかぽか。", ro: "nukunuku pokapoka.", cloze: "______ ぽかぽか。" },
+          { jp: "かわいいな。", sp: "かわいいな。", ro: "kawaii na.", cloze: "______。" },
+          { jp: "こうていでともだちとおいかけっこ。", sp: "こうてい で ともだち と おいかけっこ。", ro: "kōtei de tomodachi to oikakekko.", cloze: "こうてい で ______ と おいかけっこ。" },
+          { jp: "しんぞうが、", sp: "しんぞう が、", ro: "shinzō ga,", cloze: "______ が、" },
+          { jp: "どっくん どっくん。", sp: "どっくん どっくん。", ro: "dokkun dokkun.", cloze: "______ どっくん。" },
+          { jp: "ここまでおいで。 たのしいな。", sp: "ここまで おいで。 たのしいな。", ro: "koko made oide. tanoshii na.", cloze: "ここまで おいで。 ______。" },
+          { jp: "まいにち、", sp: "まいにち、", ro: "mainichi,", cloze: "______、" },
+          { jp: "いろんなことをする。", sp: "いろんな こと を する。", ro: "ironna koto o suru.", cloze: "いろんな こと を ______。" },
+          { jp: "まいにち、", sp: "まいにち、", ro: "mainichi,", cloze: "______、" },
+          { jp: "いろんなことをかんじる。", sp: "いろんな こと を かんじる。", ro: "ironna koto o kanjiru.", cloze: "いろんな こと を ______。" },
+          { jp: "わたしは、 いきている。", sp: "わたし は、 いきている。", ro: "watashi wa, ikite iru.", cloze: "わたし は、 ______。" },
+          { jp: "いきているって、", sp: "いきている って、", ro: "ikite iru tte,", cloze: "______ って、" },
+          { jp: "なんだかいいね。", sp: "なんだか いいね。", ro: "nandaka ii ne.", cloze: "なんだか ______。" }
+        ]
+      },
+      {
+        id: 2,
+        title: "わすれていること、なあい (Parte 1)",
+        subtitle: "Relato en la enfermería escolar sobre dar las gracias",
+        lines: [
+          { jp: "わすれていること、なあい", sp: "わすれている こと、 なあい", ro: "wasurete iru koto, naai", cloze: "______ こと、 なあい" },
+          { jp: "やすみじかんに、ぼくはころんで", sp: "やすみじかん に、 ぼく は ころんで", ro: "yasumijikan ni, boku wa koronde", cloze: "やすみじかん に、 ぼく は ______" },
+          { jp: "ひざをすりむきました。", sp: "ひざ を すりむきました。", ro: "hiza o surimukimashita.", cloze: "______ を すりむきました。" },
+          { jp: "ほけんのせんせいが、", sp: "ほけん の せんせい が、", ro: "hoken no sensei ga,", cloze: "ほけん の ______ が、" },
+          { jp: "きずのてあてをしてくれました。", sp: "きず の てあて を してくれました。", ro: "kizu no teate o shite kuremashita.", cloze: "きず の ______ を してくれました。" },
+          { jp: "せんせいが、", sp: "せんせい が、", ro: "sensei ga,", cloze: "______ が、" },
+          { jp: "「これでだいじょうぶだよ。」 といいました。", sp: "「これで だいじょうぶ だよ。」 と いいました。", ro: "‘kore de daijōbu da yo.’ to iimashita.", cloze: "「これで ______ だよ。」 と いいました。" },
+          { jp: "ぼくが、 きょうしつにもどろうとしたら、", sp: "ぼく が、 きょうしつ に もどろう と したら、", ro: "boku ga, kyōshitsu ni modorō to shitara,", cloze: "ぼく が、 ______ に もどろう と したら、" },
+          { jp: "せんせいが、", sp: "せんせい が、", ro: "sensei ga,", cloze: "______ が、" },
+          { jp: "「わすれていることなあい。」 といいました。", sp: "「わすれている こと なあい。」 と いいました。", ro: "‘wasurete iru koto naai.’ to iimashita.", cloze: "「______ こと なあい。」 と いいました。" },
+          { jp: "なんだっけ――。あっ、そうか。", sp: "なんだっけ――。 あっ、 そうか。", ro: "nandakke--. a', sō ka.", cloze: "なんだっけ――。 あっ、 ______。" },
+          { jp: "「ありがとうございました。」", sp: "「ありがとう ございました。」", ro: "‘arigatō gozaimashita.’", cloze: "「______ ございました。」" },
+          { jp: "ぼくは、 おおきなこえで いいました。", sp: "ぼく は、 おおきな こえ で いいました。", ro: "boku wa, ōkina koe de iimashita.", cloze: "ぼく は、 ______ こえ で いいました。" },
+          { jp: "せんせいは、", sp: "せんせい は、", ro: "sensei wa,", cloze: "______ は、" },
+          { jp: "「どういたしまして。」 と、にっこりしました。", sp: "「どういたしまして。」 と、 にっこり しました。", ro: "‘dōitashimashite.’ to, nikkori shimashita.", cloze: "「どういたしまして。」 と、 ______ しました。" }
+        ]
+      },
+      {
+        id: 3,
+        title: "わすれていること、なあい (Parte 2)",
+        subtitle: "Relato en el almuerzo escolar sobre pedir disculpas",
+        lines: [
+          { jp: "わすれていること、なあい", sp: "わすれている こと、 なあい", ro: "wasurete iru koto, naai", cloze: "______ こと、 なあい" },
+          { jp: "きゅうしょくのはいぜんでならんでいたら、", sp: "きゅうしょく の はいぜん で ならんで いたら、", ro: "kyūshoku no haizen de narande itara,", cloze: "______ の はいぜん で ならんで いたら、" },
+          { jp: "ひろくんがれつにわりこんできました。", sp: "ひろくん が れつ に わりこんで きました。", ro: "Hiro-kun ga retsu ni warikonde kimashita.", cloze: "ひろくん が れつ に ______ きました。" },
+          { jp: "ぼくが、ひろくんをおしたら、", sp: "ぼく が、 ひろくん を おしたら、", ro: "boku ga, Hiro-kun o oshitara,", cloze: "ぼく が、 ひろくん を ______、" },
+          { jp: "ひろくんは、 「いたい。」 といって、", sp: "ひろくん は、 「いたい。」 と いって、", ro: "Hiro-kun wa, ‘itai.’ to itte,", cloze: "ひろくん は、 「______。」 と いって、" },
+          { jp: "なきそうになりました。", sp: "なきそう に なりました。", ro: "nakisō ni narimashita.", cloze: "______ に なりました。" },
+          { jp: "せんせいがきて、", sp: "せんせい が きて、", ro: "sensei ga kite,", cloze: "______ が きて、" },
+          { jp: "はなしをきいてくれました。", sp: "はなし を きいて くれました。", ro: "hanashi o kiite kuremashita.", cloze: "______ を きいて くれました。" },
+          { jp: "せんせいとはなしを したら、", sp: "せんせい と はなし を したら、", ro: "sensei to hanashi o shitara,", cloze: "せんせい と ______ を したら、" },
+          { jp: "ぼくもわるかったとおもいました。", sp: "ぼく も わるかった と おもいました。", ro: "boku mo warukatta to omoimashita.", cloze: "ぼく も ______ と おもいました。" },
+          { jp: "だまったままのぼくたちに せんせいが、", sp: "だまった まま の ぼくたち に せんせい が、", ro: "damatta mama no bokutachi ni sensei ga,", cloze: "だまった まま の ______ に せんせい が、" },
+          { jp: "「わすれていること、 なあい。」といいました。", sp: "「わすれている こと、 なあい。」 と いいました。", ro: "‘wasurete iru koto, naai.’ to iimashita.", cloze: "「______ こと、 なあい。」 と いいました。" },
+          { jp: "なんだっけ。 あっ、そうか。", sp: "なんだっけ。 あっ、 そうか。", ro: "nandakke. a', sō ka.", cloze: "なんだっけ。 あっ、 ______。" },
+          { jp: "「おして、 ごめんね。」", sp: "「おして、 ごめんね。」", ro: "‘oshite, gomen ne.’", cloze: "「おして、 ______。」" },
+          { jp: "ぼくは、 ひろくんのかおをみていいました。", sp: "ぼく は、 ひろくん の かお を みて いいました。", ro: "boku wa, Hiro-kun no kao o mite iimashita.", cloze: "ぼく は、 ひろくん の ______ を みて いいました。" },
+          { jp: "そうしたら、ひろくんも、", sp: "そうしたら、 ひろくん も、", ro: "sō shitara, Hiro-kun mo,", cloze: "そうしたら、 ______ も、" },
+          { jp: "「わりこんで、 ごめんね。」 といいました。", sp: "「わりこんで、 ごめんね。」 と いいました。", ro: "‘warikonde, gomen ne.’ to iimashita.", cloze: "「______、 ごめんね。」 と いいました。" },
+          { jp: "それをきいた せんせいは、", sp: "それ を きいた せんせい は、", ro: "sore o kiita sensei wa,", cloze: "それ を きいた ______ は、" },
+          { jp: "ぼくもひろくんも、にっこりしました。", sp: "ぼく も ひろくん も、 にっこり しました。", ro: "boku mo Hiro-kun mo, nikkori shimashita.", cloze: "ぼく も ひろくん も、 ______ しました。" }
+        ]
+      },
+      {
+        id: 4,
+        title: "はなの みち",
+        subtitle: "Cuento clásico: el oso, la bolsa y el sendero de flores",
+        lines: [
+          { jp: "はなの みち", sp: "はな の みち", ro: "hana no michi", cloze: "______ の みち" },
+          { jp: "くまさんが、", sp: "くまさん が、", ro: "kumasan ga,", cloze: "______ が、" },
+          { jp: "ふくろをみつけました。", sp: "ふくろ を みつけました。", ro: "fukuro o mitsukemashita.", cloze: "______ を みつけました。" },
+          { jp: "「おや、なにかな。", sp: "「おや、 なに かな。", ro: "‘oya, nani ka na.", cloze: "「______、 なに かな。" },
+          { jp: "いっぱい はいっている。」", sp: "いっぱい はいって いる。」", ro: "ippai haitte iru.’", cloze: "いっぱい ______ いる。」" },
+          { jp: "くまさんが、", sp: "くまさん が、", ro: "kumasan ga,", cloze: "______ が、" },
+          { jp: "ともだちのりすさんに、", sp: "ともだち の りすさん に、", ro: "tomodachi no risusan ni,", cloze: "ともだち の ______ に、" },
+          { jp: "ききにいきました。", sp: "きき に いきました。", ro: "kiki ni ikimashita.", cloze: "______ に いきました。" },
+          { jp: "くまさんが、", sp: "くまさん が、", ro: "kumasan ga,", cloze: "______ が、" },
+          { jp: "ふくろをあけました。", sp: "ふくろ を あけました。", ro: "fukuro o akemashita.", cloze: "______ を あけました。" },
+          { jp: "なにもありません。", sp: "なにも ありません。", ro: "nanimo arimasen.", cloze: "______ ありません。" },
+          { jp: "「しまった。 あながあいていた。」", sp: "「しまった。 あな が あいて いた。」", ro: "‘shimatta. ana ga aite ita.’", cloze: "「______。 あな が ______ いた。」" },
+          { jp: "あたたかい かぜがふきはじめました。", sp: "あたたかい かぜ が ふきはじめました。", ro: "atatakai kaze ga fukihajimemashita.", cloze: "あたたかい ______ が ふきはじめました。" },
+          { jp: "ながい ながい、 はなのいっぽんみちができました。", sp: "ながい ながい、 はな の いっぽんみち が できました。", ro: "nagai nagai, hana no ipponmichi ga dekimashita.", cloze: "ながい ながい、 ______ の いっぽんみち が できました。" }
+        ]
+      },
+      {
+        id: 5,
+        title: "かん字のはなし",
+        subtitle: "Texto explicativo sobre el origen pictográfico de los kanji",
+        lines: [
+          { jp: "かん字のはなし", sp: "かんじ の はなし", ro: "kanji no hanashi", cloze: "______ の はなし" },
+          { jp: "かん字は、 はじめは、 かんたんなえのような ものでした。", sp: "かんじ は、 はじめ は、 かんたんな え の ような もの でした。", ro: "kanji wa, hajime wa, kantan na e no yō na mono deshita.", cloze: "かんじ は、 はじめ は、 かんたんな ______ の ような もの でした。" },
+          { jp: "「やま」のすがたから、 「山」というかん字ができました。", sp: "「やま」 の すがた から、 「山」 という かんじ が できました。", ro: "‘yama’ no sugata kara, ‘yama’ to iu kanji ga dekimashita.", cloze: "「やま」 の ______ から、 「山」 という かんじ が できました。" },
+          { jp: "「みず」のながれる ようすから、 「水」というかん字ができました。", sp: "「みず」 の ながれる ようす から、 「水」 という かんじ が できました。", ro: "‘mizu’ no nagareru yōsu kara, ‘mizu’ to iu kanji ga dekimashita.", cloze: "「みず」 の ______ ようす から、 「水」 という かんじ が できました。" },
+          { jp: "空から 「あめ」がふるようすから、 「雨」というかん字ができました。", sp: "そら から 「あめ」 が ふる ようす から、 「雨」 という かんじ が できました。", ro: "sora kara ‘ame’ ga furu yōsu kara, ‘ame’ to iu kanji ga dekimashita.", cloze: "そら から ______ が ふる ようす から、 「雨」 という かんじ が できました。" },
+          { jp: "「うえ」に、 ものがあることをしめすしるしから、 「上」というかん字ができました。", sp: "「うえ」 に、 もの が ある こと を しめす しるし から、 「上」 という かんじ が できました。", ro: "‘ue’ ni, mono ga aru koto o shimesu shirushi kara, ‘ue’ to iu kanji ga dekimashita.", cloze: "「うえ」 に、 もの が ある こと を しめす ______ から、 「上」 という かんじ が できました。" },
+          { jp: "「した」に、 ものがあることをしめす しるしから、 「下」というかん字ができました。", sp: "「した」 に、 もの が ある こと を しめす しるし から、 「下」 という かんじ が できました。", ro: "‘shita’ ni, mono ga aru koto o shimesu shirushi kara, ‘shita’ to iu kanji ga dekimashita.", cloze: "「した」 に、 もの が ある こと を しめす ______ から、 「下」 という かんじ が できました。" }
+        ]
+      },
+      {
+        id: 6,
+        title: "雨のうた",
+        subtitle: "Poema rítmico sobre el sonido de la lluvia y la naturaleza",
+        lines: [
+          { jp: "雨のうた", sp: "あめ の うた", ro: "ame no uta", cloze: "______ の うた" },
+          { jp: "あめは きっと", sp: "あめ は きっと", ro: "ame wa kitto", cloze: "______ は きっと" },
+          { jp: "ひとりじゃうたえない、", sp: "ひとり じゃ うたえない、", ro: "hitori ja utaenai,", cloze: "______ じゃ うたえない、" },
+          { jp: "だれかといっしょだよ。", sp: "だれか と いっしょ だよ。", ro: "dareka to issho da yo.", cloze: "______ と いっしょ だよ。" },
+          { jp: "やねと いっしょに", sp: "やね と いっしょ に", ro: "yane to issho ni", cloze: "______ と いっしょ に" },
+          { jp: "つちといっしょに", sp: "つち と いっしょ に", ro: "tsuchi to issho ni", cloze: "______ と いっしょ に" },
+          { jp: "かわといっしょに", sp: "かわ と いっしょ に", ro: "kawa to issho ni", cloze: "______ と いっしょ に" },
+          { jp: "はなといっしょに", sp: "はな と いっしょ に", ro: "hana to issho ni", cloze: "______ と いっしょ に" },
+          { jp: "やねのうた つちのうた", sp: "やね の うた つち の うた", ro: "yane no uta tsuchi no uta", cloze: "______ の うた ______ の うた" },
+          { jp: "かわのうた はなのうた", sp: "かわ の うた はな の うた", ro: "kawa no uta hana no uta", cloze: "______ の うた ______ の うた" },
+          { jp: "あめはだれとも なかよしで、", sp: "あめ は だれ と も なかよし で、", ro: "ame wa dare to mo nakayoshi de,", cloze: "あめ は ______ と も なかよし で、" },
+          { jp: "どんなうたでも しってるよ。", sp: "どんな うた でも しってる よ。", ro: "donna uta demo shitteru yo.", cloze: "どんな ______ でも しってる よ。" },
+          { jp: "やねで とんとん", sp: "やね で とんとん", ro: "yane de tonton", cloze: "やね で ______" },
+          { jp: "つちでぴちぴち", sp: "つち で ぴちぴち", ro: "tsuchi de pichipichi", cloze: "つち で ______" },
+          { jp: "かわで つんつん", sp: "かわ で つんつん", ro: "kawa de tsuntsun", cloze: "かわ で ______" },
+          { jp: "はなでしとしと", sp: "はな で しとしと", ro: "hana de shitoshito", cloze: "はな で ______" },
+          { jp: "やねのうた つちのうた", sp: "やね の うた つち の うた", ro: "yane no uta tsuchi no uta", cloze: "______ の うた ______ の うた" },
+          { jp: "かわのうた はなのうた。", sp: "かわ の うた はな の うた。", ro: "kawa no uta hana no uta.", cloze: "______ の うた ______ の うた。" }
+        ]
+      }
+    ];
+
+    // ESTADO DE LA APLICACIÓN
+    let activePassage = null;
+    let synth = window.speechSynthesis;
+    let jaVoices = [];
+    let isPlayingAll = false;
+    let currentMode = 1;
+    let useWakachi = false;
+
+    // Grabación
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let recordingIdx = null;
+    let userAudios = {};
+
+    // Cronómetro
+    let timerId = null;
+    let elapsedSeconds = 0;
+
+    // INICIALIZACIÓN
+    window.addEventListener("DOMContentLoaded", () => {
+      initSpeech();
+      renderHomeGrid();
+      setupEventListeners();
+    });
+
+    function getJapaneseVoices() {
+      const all = synth.getVoices() || [];
+      return all.filter(v => {
+        const l = (v.lang || "").replace("_", "-").toLowerCase();
+        return l.startsWith("ja");
+      }).sort((a, b) => {
+        const score = v => {
+          const n = (v.name || "").toLowerCase();
+          if (n.includes("enhanced") || n.includes("premium")) return 4;
+          if (n.includes("siri")) return 3;
+          if (n.includes("kyoko") || n.includes("otoya")) return 2;
+          return 1;
+        };
+        return score(b) - score(a);
+      });
+    }
+
+    function initSpeech() {
+      const load = () => {
+        jaVoices = getJapaneseVoices();
+      };
+      load();
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = load;
+      }
+    }
+
+    function renderHomeGrid() {
+      const grid = document.getElementById("passageGrid");
+      grid.innerHTML = "";
+
+      passages.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "passage-card";
+        card.onclick = () => selectPassage(p.id);
+
+        const sampleText = p.lines.slice(0, 3).map(l => l.jp).join(" ");
+
+        card.innerHTML = `
+          <div>
+            <span class="passage-badge">PASORATORIA 0${p.id}</span>
+            <h3 class="passage-title">${p.title}</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">${p.subtitle}</p>
+            <p class="passage-preview">${sampleText}...</p>
+          </div>
+          <div class="passage-footer">
+            <span>${p.lines.length} líneas</span>
+            <span style="display:inline-flex; align-items:center; gap:4px;">
+              Entrenar
+              <svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function selectPassage(id) {
+      activePassage = passages.find(p => p.id === id);
+      userAudios = {};
+      stopPlayback();
+
+      document.getElementById("currentPassageHeading").textContent = `${activePassage.title} — Pasaje ${activePassage.id}`;
+      document.getElementById("viewHome").classList.remove("active");
+      document.getElementById("viewPractice").classList.add("active");
+      document.getElementById("btnHeaderHome").style.display = "inline-flex";
+
+      // Opciones ocultas por defecto
+      const deckCollapsible = document.getElementById("deckCollapsible");
+      const deckToggleText = document.getElementById("deckToggleText");
+      const deckChevron = document.querySelector(".deck-chevron");
+      const btnToggleDeck = document.getElementById("btnToggleDeck");
+      if (deckCollapsible) {
+        deckCollapsible.classList.add("is-collapsed");
+        if (btnToggleDeck) btnToggleDeck.setAttribute("aria-expanded", "false");
+        if (deckToggleText) deckToggleText.textContent = "Mostrar opciones";
+        if (deckChevron) deckChevron.classList.add("collapsed");
+      }
+
+      renderPracticeFeed();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function navigateHome() {
+      stopPlayback();
+      document.getElementById("viewPractice").classList.remove("active");
+      document.getElementById("viewHome").classList.add("active");
+      document.getElementById("btnHeaderHome").style.display = "none";
+    }
+
+    function renderPracticeFeed() {
+      const container = document.getElementById("scriptFeed");
+      container.innerHTML = "";
+
+      activePassage.lines.forEach((item, idx) => {
+        const card = document.createElement("div");
+        card.className = "sentence-card";
+        card.id = `line-${idx}`;
+
+        let displayJp = useWakachi ? item.sp : item.jp;
+        if (currentMode === 3) displayJp = item.cloze.replace(/______/g, '<span class="cloze-blank">______</span>');
+        if (currentMode === 4) displayJp = `<span class="hidden-text">${item.jp}</span>`;
+
+        const showRomaji = currentMode === 1;
+        const romajiBlock = showRomaji ? `<span class="sentence-ro">${item.ro}</span>` : "";
+
+        const hasAudio = !!userAudios[idx];
+
+        card.innerHTML = `
+          <div class="sentence-content" onclick="playSingleLine(${idx})">
+            <span class="sentence-jp">${displayJp}</span>
+            ${romajiBlock}
+          </div>
+          <div class="sentence-tools">
+            <button class="btn-util btn-rec" id="rec-btn-${idx}" title="Grabar mi voz" onclick="handleRecord(${idx}, event)">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
+            </button>
+            <button class="btn-util ${hasAudio ? 'has-audio' : ''}" id="user-play-${idx}" style="${hasAudio ? '' : 'display:none;'}" title="Escuchar mi grabación" onclick="playUserRecording(${idx}, event)">
+              <svg class="icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function setupEventListeners() {
+      const speedSlider = document.getElementById("speedSlider");
+      const speedDisplay = document.getElementById("speedDisplay");
+
+      speedSlider.oninput = () => {
+        speedDisplay.textContent = `${speedSlider.value}x`;
+      };
+
+      document.getElementById("btnPlayAll").onclick = startContinuousPlayback;
+      document.getElementById("btnStop").onclick = stopPlayback;
+
+      // Selector de modos de ocultamiento
+      document.querySelectorAll(".pill-btn").forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll(".pill-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentMode = parseInt(btn.dataset.mode);
+          renderPracticeFeed();
+        };
+      });
+
+      // Toggle Wakachi
+      const wakachiBtn = document.getElementById("btnToggleWakachi");
+      wakachiBtn.onclick = () => {
+        useWakachi = !useWakachi;
+        wakachiBtn.classList.toggle("active", useWakachi);
+        renderPracticeFeed();
+      };
+
+      // Toggle panel colapsable de opciones en móvil
+      const btnToggleDeck = document.getElementById("btnToggleDeck");
+      const deckCollapsible = document.getElementById("deckCollapsible");
+      const deckToggleText = document.getElementById("deckToggleText");
+      const deckChevron = document.querySelector(".deck-chevron");
+
+      if (btnToggleDeck && deckCollapsible) {
+        btnToggleDeck.onclick = () => {
+          const isCollapsed = deckCollapsible.classList.toggle("is-collapsed");
+          btnToggleDeck.setAttribute("aria-expanded", !isCollapsed);
+          if (deckToggleText) {
+            deckToggleText.textContent = isCollapsed ? "Mostrar opciones" : "Ocultar opciones";
+          }
+          if (deckChevron) {
+            deckChevron.classList.toggle("collapsed", isCollapsed);
+          }
+        };
+      }
+    }
+
+    function highlightRow(idx) {
+      document.querySelectorAll(".sentence-card").forEach(el => el.classList.remove("active"));
+      if (idx >= 0 && activePassage && idx < activePassage.lines.length) {
+        const row = document.getElementById(`line-${idx}`);
+        if (row) {
+          row.classList.add("active");
+          row.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      }
+    }
+
+    let activeUtterance = null; // Previene el bug de Garbage Collection de Safari WebKit
+
+    function speakText(text, onComplete) {
+      // 1. Solución Safari: Reactivar síntesis si Safari quedó en pausa
+      try {
+        if (synth.paused) {
+          synth.resume();
+        }
+        synth.cancel();
+      } catch (err) {
+        console.warn("Error al reiniciar síntesis:", err);
+      }
+
+      // 2. Si las voces aún no se han poblado, buscarlas dinámicamente
+      if (!jaVoices || jaVoices.length === 0) {
+        jaVoices = getJapaneseVoices();
+      }
+
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "ja-JP";
+      utter.volume = 1.0; // Máximo volumen garantizado
+      utter.pitch = 1.0;
+      utter.rate = parseFloat(document.getElementById("speedSlider").value) || 0.6;
+
+      if (jaVoices.length > 0) {
+        utter.voice = jaVoices[0];
+      }
+
+      // 3. Referencia persistente para evitar que el recolector de basura de Safari lo silencie
+      activeUtterance = utter;
+      window.__safariActiveUtterance = utter;
+
+      let hasFinished = false;
+      const finish = () => {
+        if (hasFinished) return;
+        hasFinished = true;
+        activeUtterance = null;
+        window.__safariActiveUtterance = null;
+        if (onComplete) setTimeout(onComplete, 350);
+      };
+
+      utter.onend = finish;
+      utter.onerror = (e) => {
+        console.warn("SpeechSynthesis error:", e);
+        try {
+          if (synth.paused) synth.resume();
+        } catch (_) {}
+        finish();
+      };
+
+      // 4. Solución Safari: Retardo de 40ms tras synth.cancel() para no trabar el subsistema de audio
+      setTimeout(() => {
+        try {
+          if (synth.paused) synth.resume();
+          synth.speak(utter);
+        } catch (err) {
+          console.warn("Error en speak:", err);
+          finish();
+        }
+      }, 40);
+    }
+
+    function playSingleLine(idx) {
+      stopPlayback();
+      highlightRow(idx);
+      speakText(activePassage.lines[idx].jp);
+    }
+
+    function startContinuousPlayback() {
+      if (!activePassage) return;
+      isPlayingAll = true;
+      resetTimer();
+      startTimer();
+      playStep(0);
+    }
+
+    function playStep(idx) {
+      if (!isPlayingAll || idx >= activePassage.lines.length) {
+        stopPlayback();
+        return;
+      }
+      highlightRow(idx);
+      speakText(activePassage.lines[idx].jp, () => {
+        playStep(idx + 1);
+      });
+    }
+
+    function stopPlayback() {
+      isPlayingAll = false;
+      try {
+        synth.cancel();
+      } catch (_) {}
+      stopTimer();
+      highlightRow(-1);
+    }
+
+    // Cronómetro
+    function startTimer() {
+      timerId = setInterval(() => {
+        elapsedSeconds++;
+        const mins = String(Math.floor(elapsedSeconds / 60)).padStart(2, "0");
+        const secs = String(elapsedSeconds % 60).padStart(2, "0");
+        document.getElementById("timerDisplay").textContent = `${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function stopTimer() {
+      clearInterval(timerId);
+    }
+
+    function resetTimer() {
+      stopTimer();
+      elapsedSeconds = 0;
+      document.getElementById("timerDisplay").textContent = "00:00";
+    }
+
+    // Formato de audio dinámico compatible con Safari y Chrome
+    function getBestAudioMimeType() {
+      if (typeof MediaRecorder === "undefined") return "";
+      const candidates = [
+        "audio/mp4",
+        "audio/webm;codecs=opus",
+        "audio/webm",
+        "audio/aac",
+        "audio/ogg;codecs=opus"
+      ];
+      for (const t of candidates) {
+        if (MediaRecorder.isTypeSupported(t)) return t;
+      }
+      return "";
+    }
+
+    let recordedMimeType = "";
+
+    // Grabación en navegador con volumen optimizado y soporte completo para Safari
+    async function handleRecord(idx, e) {
+      e.stopPropagation();
+      const btn = document.getElementById(`rec-btn-${idx}`);
+
+      if (recordingIdx === idx) {
+        if (mediaRecorder && mediaRecorder.state !== "inactive") {
+          mediaRecorder.stop();
+        }
+        btn.classList.remove("recording");
+        recordingIdx = null;
+        return;
+      }
+
+      try {
+        // Optimización de ganancia y volumen para micrófono en Safari / Chrome
+        const stream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            autoGainControl: true,    // Aumenta la ganancia automáticamente para evitar audio bajo
+            echoCancellation: true,
+            noiseSuppression: false   // Evita atenuar o apagar el volumen de la voz
+          }
+        });
+
+        audioChunks = [];
+        recordedMimeType = getBestAudioMimeType();
+        const options = recordedMimeType ? { mimeType: recordedMimeType } : undefined;
+        mediaRecorder = new MediaRecorder(stream, options);
+        recordingIdx = idx;
+
+        mediaRecorder.ondataavailable = ev => {
+          if (ev.data && ev.data.size > 0) audioChunks.push(ev.data);
+        };
+
+        mediaRecorder.onstop = () => {
+          const type = recordedMimeType || (audioChunks[0] && audioChunks[0].type) || "audio/mp4";
+          const blob = new Blob(audioChunks, { type });
+          userAudios[idx] = URL.createObjectURL(blob);
+          const playBtn = document.getElementById(`user-play-${idx}`);
+          if (playBtn) {
+            playBtn.style.display = "inline-flex";
+            playBtn.classList.add("has-audio");
+          }
+          stream.getTracks().forEach(t => t.stop());
+        };
+
+        mediaRecorder.start();
+        btn.classList.add("recording");
+      } catch (err) {
+        console.warn("Error en grabación:", err);
+        alert("No se pudo acceder al micrófono.");
+      }
+    }
+
+    function playUserRecording(idx, e) {
+      e.stopPropagation();
+      if (userAudios[idx]) {
+        const snd = new Audio(userAudios[idx]);
+        snd.volume = 1.0; // Volumen máximo al 100%
+        snd.play().catch(err => console.warn("Error al reproducir audio:", err));
+      }
+    }
+  </script>
+</body>
+
+</html>
