@@ -1,0 +1,300 @@
+@if (passage(); as currentPassage) {
+  <section class="practice-view">
+    <div class="practice-nav">
+      <div class="practice-nav-left">
+        <a routerLink="/" class="btn-secondary">
+          <svg class="icon" viewBox="0 0 24 24">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Elegir otro pasaje</span>
+        </a>
+
+        @if (currentPassage.youtubeId) {
+          <button
+            class="btn-secondary btn-video-toggle"
+            [class.active]="showVideo()"
+            (click)="toggleVideo()"
+            type="button"
+          >
+            <svg class="icon" viewBox="0 0 24 24">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span>{{ showVideo() ? 'Ocultar video modelo' : 'Ver video modelo' }}</span>
+          </button>
+        }
+      </div>
+
+      <h2 class="current-passage-heading">
+        {{ currentPassage.title }} — Pasaje {{ currentPassage.id }}
+      </h2>
+    </div>
+
+    <div class="workspace-layout">
+      <!-- BARRA LATERAL DE CONTROL -->
+      <aside class="control-deck">
+        <div class="deck-header">
+          <span class="deck-header-title">
+            <svg class="icon" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+              ></path>
+            </svg>
+            Controles de Práctica
+          </span>
+          <button
+            class="btn-deck-toggle"
+            type="button"
+            [attr.aria-expanded]="!optionsCollapsed()"
+            (click)="toggleOptions()"
+          >
+            <span>{{ optionsCollapsed() ? 'Mostrar opciones' : 'Ocultar opciones' }}</span>
+            <svg
+              class="icon deck-chevron"
+              [class.collapsed]="optionsCollapsed()"
+              viewBox="0 0 24 24"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Fila principal (Iniciar/Detener + Tiempo) -->
+        <div class="deck-primary-row">
+          <div class="control-block">
+            <span class="control-label">
+              <svg class="icon" viewBox="0 0 24 24">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Lectura Continua
+            </span>
+            <div class="btn-main-row">
+              <button
+                class="btn-action primary"
+                (click)="startContinuousPlayback()"
+                [disabled]="isPlayingAll()"
+                [class.active-btn]="isPlayingAll()"
+              >
+                <svg class="icon" viewBox="0 0 24 24">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Iniciar</span>
+              </button>
+              <button class="btn-action" (click)="stopPlayback()">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                </svg>
+                <span>Detener</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="control-block">
+            <span class="control-label">
+              <svg class="icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              Tiempo
+            </span>
+            <div class="timer-readout">{{ timerService.formattedTime() }}</div>
+          </div>
+        </div>
+
+        <!-- Opciones adicionales colapsables -->
+        <div class="control-deck-collapsible" [class.is-collapsed]="optionsCollapsed()">
+          <div class="control-block">
+            <span class="control-label">
+              <svg class="icon" viewBox="0 0 24 24">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+              Velocidad: <span class="speed-tag">{{ playbackSpeed() }}x</span>
+            </span>
+            <div class="speed-wrapper">
+              <input
+                type="range"
+                min="0.3"
+                max="1.0"
+                step="0.05"
+                [value]="playbackSpeed()"
+                (input)="onSpeedChange($event)"
+              />
+            </div>
+          </div>
+
+          <div class="control-block">
+            <span class="control-label">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M2 12h20M2 12l5-5m-5 5 5 5"></path>
+              </svg>
+              Memorización Gradual
+            </span>
+            <div class="mode-pills">
+              <button
+                class="pill-btn"
+                [class.active]="currentMode() === 1"
+                (click)="setMode(1)"
+              >
+                1. Completo
+              </button>
+              <button
+                class="pill-btn"
+                [class.active]="currentMode() === 2"
+                (click)="setMode(2)"
+              >
+                2. Sin Rōmaji
+              </button>
+              <button
+                class="pill-btn"
+                [class.active]="currentMode() === 3"
+                (click)="setMode(3)"
+              >
+                3. Cloze
+              </button>
+              <button
+                class="pill-btn"
+                [class.active]="currentMode() === 4"
+                (click)="setMode(4)"
+              >
+                4. Ciego
+              </button>
+            </div>
+          </div>
+
+          <div class="control-block">
+            <span class="control-label">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M4 7V4h16v3M9 20h6M12 4v16"></path>
+              </svg>
+              Estructura
+            </span>
+            <button
+              class="toggle-button"
+              [class.active]="useWakachi()"
+              (click)="toggleWakachi()"
+            >
+              <span>Espaciado Natural (Wakachi)</span>
+              <svg class="icon" viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- SECUENCIA DEL TEXTO -->
+      <section class="script-feed">
+        @if (showVideo() && videoEmbedUrl(); as embedUrl) {
+          <div class="video-reference-card">
+            <div class="video-header">
+              <div class="video-header-info">
+                <span class="video-badge">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                  </svg>
+                  LECTURA MODELO
+                </span>
+                <span class="video-title">Video oficial de referencia para pronunciación y ritmo</span>
+              </div>
+              <button
+                class="btn-close-video"
+                (click)="toggleVideo()"
+                title="Cerrar video"
+                type="button"
+              >
+                <svg class="icon" viewBox="0 0 24 24">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+            <div class="video-frame-container">
+              <iframe
+                [src]="embedUrl"
+                title="Video modelo de lectura: {{ currentPassage.title }}"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        }
+
+        @for (item of currentPassage.lines; track $index; let idx = $index) {
+          <div
+            #lineCard
+            class="sentence-card"
+            [id]="'line-' + idx"
+            [class.active]="activePlayingIndex() === idx"
+          >
+            <div class="sentence-content" (click)="playSingleLine(idx)">
+              <!-- Modo 1 & 2: Normal o Wakachi -->
+              @if (currentMode() === 1 || currentMode() === 2) {
+                <span class="sentence-jp">{{ useWakachi() ? item.sp : item.jp }}</span>
+              }
+
+              <!-- Modo 3: Cloze -->
+              @if (currentMode() === 3) {
+                <span class="sentence-jp">
+                  @for (segment of getClozeSegments(item); track $index) {
+                    @if (segment.isBlank) {
+                      <span class="cloze-blank">______</span>
+                    } @else {
+                      {{ segment.text }}
+                    }
+                  }
+                </span>
+              }
+
+              <!-- Modo 4: Ciego -->
+              @if (currentMode() === 4) {
+                <span class="sentence-jp">
+                  <span class="hidden-text">{{ useWakachi() ? item.sp : item.jp }}</span>
+                </span>
+              }
+
+              <!-- Rōmaji (solo en modo 1) -->
+              @if (currentMode() === 1) {
+                <span class="sentence-ro">{{ item.ro }}</span>
+              }
+            </div>
+
+            <div class="sentence-tools">
+              <!-- Botón de Grabación -->
+              <button
+                class="btn-util btn-rec"
+                [class.recording]="isRecording(idx)"
+                title="Grabar mi voz"
+                (click)="handleRecord(idx, $event)"
+              >
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  <line x1="12" y1="19" x2="12" y2="22"></line>
+                </svg>
+              </button>
+
+              <!-- Botón de Reproducir Grabación Propia -->
+              @if (hasAudio(idx)) {
+                <button
+                  class="btn-util has-audio"
+                  title="Escuchar mi grabación"
+                  (click)="playUserRecording(idx, $event)"
+                >
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+              }
+            </div>
+          </div>
+        }
+      </section>
+    </div>
+  </section>
+}

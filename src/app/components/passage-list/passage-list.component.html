@@ -1,0 +1,39 @@
+<section class="home-view">
+  <div class="home-hero">
+    <h2>Pasajes Disponibles</h2>
+    <p>Selecciona uno de los 6 textos para configurar el entrenamiento de pronunciación, ritmo y memoria.</p>
+  </div>
+
+  <div class="passage-grid">
+    @for (passage of passages; track passage.id) {
+      <div class="passage-card" [routerLink]="['/practice', passage.id]">
+        <div class="card-content">
+          <div class="badge-row">
+            <span class="passage-badge">ORATORIA {{ formatId(passage.id) }}</span>
+            @if (passage.youtubeId) {
+              <span class="video-pill" title="Incluye video modelo de referencia">
+                <svg class="icon video-icon" viewBox="0 0 24 24">
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                Video
+              </span>
+            }
+          </div>
+          <h3 class="passage-title">{{ passage.title }}</h3>
+          <p class="passage-subtitle">{{ passage.subtitle }}</p>
+          <p class="passage-preview">{{ getSamplePreview(passage) }}...</p>
+        </div>
+        <div class="passage-footer">
+          <span>{{ passage.lines.length }} líneas</span>
+          <span class="train-link">
+            Entrenar
+            <svg class="icon" viewBox="0 0 24 24">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </span>
+        </div>
+      </div>
+    }
+  </div>
+</section>

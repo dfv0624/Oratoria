@@ -1,0 +1,24 @@
+<header>
+  <div class="header-inner">
+    <div class="logo-group">
+      <img
+        src="https://secure.gravatar.com/blavatar/cee1ba2dbf884f2e2ecec873c3abd5f350e311307a89d312a5b9066128a44023?s=100"
+        alt="Logo Concurso de Oratoria"
+        class="header-logo"
+      />
+      <div class="header-titles">
+        <h1 class="header-title">Concurso de Oratoria Noviembre 2026</h1>
+      </div>
+    </div>
+
+    @if (isPracticeView()) {
+      <a routerLink="/" class="btn-secondary" id="btnHeaderHome">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Volver a la selección</span>
+      </a>
+    }
+  </div>
+</header>
