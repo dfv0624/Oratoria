@@ -13,9 +13,6 @@ export class PassageListComponent {
   private readonly passageService = inject(PassageService);
   readonly passages: Passage[] = this.passageService.getPassages();
 
-  getSamplePreview(passage: Passage): string {
-    return passage.lines.slice(0, 3).map((l) => l.jp).join(' ');
-  }
 
   formatId(id: number): string {
     return id.toString().padStart(2, '0');

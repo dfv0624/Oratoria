@@ -37,7 +37,7 @@ export class PracticeViewComponent implements OnInit, OnDestroy {
   readonly timerService = inject(TimerService);
 
   readonly passage = signal<Passage | null>(null);
-  readonly currentMode = signal<MemorizationMode>(1);
+  readonly currentMode = signal<MemorizationMode>(2);
   readonly useWakachi = signal<boolean>(false);
   readonly playbackSpeed = signal<number>(0.6);
   readonly optionsCollapsed = signal<boolean>(true);
@@ -77,6 +77,7 @@ export class PracticeViewComponent implements OnInit, OnDestroy {
   private resetState(): void {
     this.stopPlayback();
     this.audioRecorderService.clearAudios();
+    this.currentMode.set(2);
     this.optionsCollapsed.set(true);
     this.showVideo.set(false);
     if (this.isBrowser) {

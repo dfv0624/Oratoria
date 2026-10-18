@@ -30,7 +30,7 @@ export const PASSAGES: Passage[] = [
   },
   {
     id: 2,
-    title: 'わすれていること、なあい (Parte 1)',
+    title: 'わすれていること、なあい',
     subtitle: 'Relato en la enfermería escolar sobre dar las gracias',
     lines: [
       { jp: 'わすれていること、なあい', sp: 'わすれている こと、 なあい', ro: 'wasurete iru koto, naai', cloze: '______ こと、 なあい' },
@@ -52,7 +52,7 @@ export const PASSAGES: Passage[] = [
   },
   {
     id: 3,
-    title: 'わすれていること、なあい (Parte 2)',
+    title: 'わすれていること、なあい',
     subtitle: 'Relato en el almuerzo escolar sobre pedir disculpas',
     lines: [
       { jp: 'わすれていること、なあい', sp: 'わすれている こと、 なあい', ro: 'wasurete iru koto, naai', cloze: '______ こと、 なあい' },
@@ -102,6 +102,7 @@ export const PASSAGES: Passage[] = [
     id: 5,
     title: 'かん字のはなし',
     subtitle: 'Texto explicativo sobre el origen pictográfico de los kanji',
+    youtubeId: 'fYkTnVTj-vs',
     lines: [
       { jp: 'かん字のはなし', sp: 'かんじ の はなし', ro: 'kanji no hanashi', cloze: '______ の はなし' },
       { jp: 'かん字は、 はじめは、 かんたんなえのような ものでした。', sp: 'かんじ は、 はじめ は、 かんたんな え の ような もの でした。', ro: 'kanji wa, hajime wa, kantan na e no yō na mono deshita.', cloze: 'かんじ は、 はじめ は、 かんたんな ______ の ような もの でした。' },
@@ -116,6 +117,7 @@ export const PASSAGES: Passage[] = [
     id: 6,
     title: '雨のうた',
     subtitle: 'Poema rítmico sobre el sonido de la lluvia y la naturaleza',
+    youtubeId: 'EfDnmkaNhiw',
     lines: [
       { jp: '雨のうた', sp: 'あめ の うた', ro: 'ame no uta', cloze: '______ の うた' },
       { jp: 'あめは きっと', sp: 'あめ は きっと', ro: 'ame wa kitto', cloze: '______ は きっと' },

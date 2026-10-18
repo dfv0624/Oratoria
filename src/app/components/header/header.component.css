@@ -25,11 +25,8 @@ header {
 .header-logo {
   width: 44px;
   height: 44px;
-  border-radius: 8px;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
-  border: 1px solid var(--border);
-  background: #ffffff;
   flex-shrink: 0;
 }
 

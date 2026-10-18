@@ -9,7 +9,7 @@
       <div class="passage-card" [routerLink]="['/practice', passage.id]">
         <div class="card-content">
           <div class="badge-row">
-            <span class="passage-badge">ORATORIA {{ formatId(passage.id) }}</span>
+            <span class="passage-badge">PASAJE {{ formatId(passage.id) }}</span>
             @if (passage.youtubeId) {
               <span class="video-pill" title="Incluye video modelo de referencia">
                 <svg class="icon video-icon" viewBox="0 0 24 24">
@@ -22,7 +22,6 @@
           </div>
           <h3 class="passage-title">{{ passage.title }}</h3>
           <p class="passage-subtitle">{{ passage.subtitle }}</p>
-          <p class="passage-preview">{{ getSamplePreview(passage) }}...</p>
         </div>
         <div class="passage-footer">
           <span>{{ passage.lines.length }} líneas</span>
