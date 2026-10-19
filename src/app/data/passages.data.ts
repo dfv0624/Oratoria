@@ -30,10 +30,10 @@ export const PASSAGES: Passage[] = [
   },
   {
     id: 2,
-    title: 'わすれていること、なあい',
+    title: '「わすれていること なあい」',
     subtitle: 'Relato en la enfermería escolar sobre dar las gracias',
     lines: [
-      { jp: 'わすれていること、なあい', sp: 'わすれている こと、 なあい', ro: 'wasurete iru koto, naai', cloze: '______ こと、 なあい' },
+      { jp: '「わすれていること なあい」', sp: '「わすれている こと なあい」', ro: '‘wasurete iru koto naai’', cloze: '「______ こと なあい」' },
       { jp: 'やすみじかんに、ぼくはころんで', sp: 'やすみじかん に、 ぼく は ころんで', ro: 'yasumijikan ni, boku wa koronde', cloze: 'やすみじかん に、 ぼく は ______' },
       { jp: 'ひざをすりむきました。', sp: 'ひざ を すりむきました。', ro: 'hiza o surimukimashita.', cloze: '______ を すりむきました。' },
       { jp: 'ほけんのせんせいが、', sp: 'ほけん の せんせい が、', ro: 'hoken no sensei ga,', cloze: 'ほけん の ______ が、' },
@@ -52,10 +52,10 @@ export const PASSAGES: Passage[] = [
   },
   {
     id: 3,
-    title: 'わすれていること、なあい',
+    title: '「わすれていること なあい」',
     subtitle: 'Relato en el almuerzo escolar sobre pedir disculpas',
     lines: [
-      { jp: 'わすれていること、なあい', sp: 'わすれている こと、 なあい', ro: 'wasurete iru koto, naai', cloze: '______ こと、 なあい' },
+      { jp: '「わすれていること なあい」', sp: '「わすれている こと なあい」', ro: '‘wasurete iru koto naai’', cloze: '「______ こと なあい」' },
       { jp: 'きゅうしょくのはいぜんでならんでいたら、', sp: 'きゅうしょく の はいぜん で ならんで いたら、', ro: 'kyūshoku no haizen de narande itara,', cloze: '______ の はいぜん で ならんで いたら、' },
       { jp: 'ひろくんがれつにわりこんできました。', sp: 'ひろくん が れつ に わりこんで きました。', ro: 'Hiro-kun ga retsu ni warikonde kimashita.', cloze: 'ひろくん が れつ に ______ きました。' },
       { jp: 'ぼくが、ひろくんをおしたら、', sp: 'ぼく が、 ひろくん を おしたら、', ro: 'boku ga, Hiro-kun o oshitara,', cloze: 'ぼく が、 ひろくん を ______、' },
@@ -72,7 +72,7 @@ export const PASSAGES: Passage[] = [
       { jp: 'ぼくは、 ひろくんのかおをみていいました。', sp: 'ぼく は、 ひろくん の かお を みて いいました。', ro: 'boku wa, Hiro-kun no kao o mite iimashita.', cloze: 'ぼく は、 ひろくん の ______ を みて いいました。' },
       { jp: 'そうしたら、ひろくんも、', sp: 'そうしたら、 ひろくん も、', ro: 'sō shitara, Hiro-kun mo,', cloze: 'そうしたら、 ______ も、' },
       { jp: '「わりこんで、 ごめんね。」 といいました。', sp: '「わりこんで、 ごめんね。」 と いいました。', ro: '‘warikonde, gomen ne.’ to iimashita.', cloze: '「______、 ごめんね。」 と いいました。' },
-      { jp: 'それをきいた せんせいは、', sp: 'それ を きいた せんせい は、', ro: 'sore o kiita sensei wa,', cloze: 'それ を きいた ______ は、' },
+      { jp: 'それを きいた せんせいは、 にっこり しました。', sp: 'それ を きいた せんせい は、 にっこり しました。', ro: 'sore o kiita sensei wa, nikkori shimashita.', cloze: 'それ を きいた ______ は、 にっこり しました。' },
       { jp: 'ぼくもひろくんも、にっこりしました。', sp: 'ぼく も ひろくん も、 にっこり しました。', ro: 'boku mo Hiro-kun mo, nikkori shimashita.', cloze: 'ぼく も ひろくん も、 ______ しました。' }
     ]
   },
@@ -115,11 +115,11 @@ export const PASSAGES: Passage[] = [
   },
   {
     id: 6,
-    title: '雨のうた',
+    title: '「雨の うた」',
     subtitle: 'Poema rítmico sobre el sonido de la lluvia y la naturaleza',
     youtubeId: 'EfDnmkaNhiw',
     lines: [
-      { jp: '雨のうた', sp: 'あめ の うた', ro: 'ame no uta', cloze: '______ の うた' },
+      { jp: '「雨の うた」', sp: '「あめ の うた」', ro: '‘ame no uta’', cloze: '「______ の うた」' },
       { jp: 'あめは きっと', sp: 'あめ は きっと', ro: 'ame wa kitto', cloze: '______ は きっと' },
       { jp: 'ひとりじゃうたえない、', sp: 'ひとり じゃ うたえない、', ro: 'hitori ja utaenai,', cloze: '______ じゃ うたえない、' },
       { jp: 'だれかといっしょだよ。', sp: 'だれか と いっしょ だよ。', ro: 'dareka to issho da yo.', cloze: '______ と いっしょ だよ。' },

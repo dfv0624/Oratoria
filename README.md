@@ -65,11 +65,11 @@ La plataforma incluye un sistema de aprendizaje progresivo en 4 fases:
 El sistema viene preconfigurado con una cuidada selección de lecturas y discursos:
 
 1. **いきているって** (*Poema de sensaciones cotidianas y vida*) — 20 líneas.
-2. **わすれていること、なあい (Parte 1)** (*Relato en la enfermería escolar sobre dar las gracias*) — 15 líneas.
-3. **わすれていること、なあい (Parte 2)** (*Relato en el almuerzo escolar sobre pedir disculpas*) — 16 líneas.
+2. **「わすれていること なあい」 (Parte 1)** (*Relato en la enfermería escolar sobre dar las gracias*) — 15 líneas.
+3. **「わすれていること なあい」 (Parte 2)** (*Relato en el almuerzo escolar sobre pedir disculpas*) — 16 líneas.
 4. **はなの みち** (*Cuento clásico del oso y el sendero de flores*) — 14 líneas 🎥 *(Incluye video modelo)*.
 5. **かん字のはなし** (*Texto explicativo sobre el origen pictográfico de los kanji*) — 7 líneas.
-6. **雨のうた** (*Poema rítmico sobre el sonido de la lluvia y la naturaleza*) — 18 líneas.
+6. **「雨の うた」** (*Poema rítmico sobre el sonido de la lluvia y la naturaleza*) — 18 líneas.
 
 ---
 
